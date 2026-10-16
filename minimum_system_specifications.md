@@ -20,6 +20,4 @@
 
 The specifications above are the minimum or recommended setup for running the PDMS project. Performance may vary depending on the computer and the amount of data stored in the database. The listed software versions are the versions used during development and testing.
 """
-path = Path("/mnt/data/System_Specifications.md")
-path.write_text(content, encoding="utf-8")
-print(f"Created: {path}")
+
