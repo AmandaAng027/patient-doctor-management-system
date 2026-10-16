@@ -2,8 +2,7 @@
 
 ## About the Project
 
-The Patient-Doctor Management System (PDMS) is a desktop application developed as an academic project by Amanda Ang, spanning November 2025 to June 2026 (see [Thesis Paper]
-(pdms_thesis.pdf)). It is a prototype that is designed to help small clinics in the Philippines, especially in rural areas, manage patient information and organize basic clinic operations in one system.
+The Patient-Doctor Management System (PDMS) is a desktop application developed as an academic project by Amanda Ang, spanning November 2025 to June 2026 (See the [Thesis Paper](docs/pdms_thesis.pdf)). It is a prototype that is designed to help small clinics in the Philippines, especially in rural areas, manage patient information and organize basic clinic operations in one system.
 
 The application was developed using Python, Tkinter, and Microsoft SQL Server.
 
@@ -33,8 +32,8 @@ The application was developed using Python, Tkinter, and Microsoft SQL Server.
 
 Please refer to the following files for the setup instructions and system requirements:
 
-- [Installation Guide](installation_guide.md)
-- [Minimum System Specifications](min_system_specs.md)
+- [Installation Guide](docs/installation_guide.md)
+- [Minimum System Specifications](docs/min_system_specs.md)
 
 
 
