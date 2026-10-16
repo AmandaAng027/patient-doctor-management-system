@@ -1,8 +1,8 @@
-# Patient Data Management System (PDMS)
+# Patient-Doctor Management System (PDMS)
 
 ## About the Project
 
-The Patient Data Management System (PDMS) is a desktop application developed as an academic project. It is designed to help small clinics manage patient information and organize basic clinic operations in one system.
+The Patient-Doctor Management System (PDMS) is a desktop application developed as an academic project. It is designed to help small clinics manage patient information and organize basic clinic operations in one system.
 
 The application was developed using Python, Tkinter, and Microsoft SQL Server.
 
