@@ -1,30 +1,22 @@
-# Installation and Setup Guide
+from pathlib import Path
 
-This guide explains how to install and run the Patient Data Management System (PDMS) on Windows.
+content = r"""# Installation and Setup Guide
 
-## Prerequisites
+This guide explains how to install and run the Patient-Doctor Management System (PDMS) on Windows.
 
-- Windows
-- Python 3.10 or later
-- Microsoft SQL Server Express
-- SQL Server Management Studio (SSMS)
-- Microsoft ODBC Driver 17 for SQL Server
-- PyCharm Community Edition (recommended) or Command Prompt
+## Step 1 - Install Python
 
-## Step 1 — Install Python
+1. Download Python 3.10 or later from the [Python website](https://www.python.org/downloads/).
+2. Run the installer and follow the instructions.
+3. If the option appears, check **Add Python to PATH** before installing.
 
-1. Download Python 3.10 or later from the [official Python website](https://www.python.org/downloads/).
-2. Run the installer.
-3. If offered, select **Add Python to PATH**.
-4. Finish the installation.
-
-To check that Python is installed, open Command Prompt or PowerShell and run:
+To check if Python was installed, open Command Prompt or PowerShell and type:
 
 ```powershell
 python --version
 ```
 
-## Step 2 — Install the Required Python Packages
+## Step 2 - Install the Required Packages
 
 Open Command Prompt or PowerShell and run:
 
@@ -32,94 +24,81 @@ Open Command Prompt or PowerShell and run:
 python -m pip install pyodbc tkcalendar fpdf Pillow Werkzeug
 ```
 
-These packages provide database connectivity, calendar widgets, PDF generation, image handling, and password hashing.
+These packages are used for the database connection, calendar, PDF files, images, and password hashing.
 
-If the project includes a `requirements.txt` file, you can instead install its listed dependencies with:
-
-```powershell
-python -m pip install -r requirements.txt
-```
-
-## Step 3 — Install SQL Server Express and SSMS
+## Step 3 - Install SQL Server Express and SSMS
 
 1. Download [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads).
-2. Install SQL Server Express. The **Basic** installation is suitable for a standard local setup.
-3. Note the SQL Server instance name shown or configured during installation. A common example is `localhost\SQLEXPRESS`.
+2. Install it. The Basic installation should be fine for a local setup.
+3. Take note of your SQL Server instance name. It may look like `localhost\SQLEXPRESS`.
 4. Download [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/ssms/install/install).
-5. Install SSMS using the installer instructions.
+5. Install SSMS using the default options.
 
-## Step 4 — Install the Microsoft ODBC Driver 17 for SQL Server
+## Step 4 - Install the ODBC Driver
 
-1. Open Microsoft's [ODBC Driver download page](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver17).
-2. Download and install **Microsoft ODBC Driver 17 for SQL Server** for your Windows system.
-3. Complete the installation before running the application.
+1. Go to the [Microsoft ODBC Driver download page](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver17).
+2. Download and install **Microsoft ODBC Driver 17 for SQL Server**.
 
-The driver name in the application's database connection configuration must match the installed driver.
+The application uses this driver to connect Python to SQL Server.
 
-## Step 5 — Set Up the PDMS Database
+## Step 5 - Set Up the PDMS Database
 
-**Important:** Run only a reviewed, portable version of the project's SQL setup script. The original development script may contain machine-specific database file paths and sample account data, so do not run that original script on another computer until it has been cleaned and verified.
+**Note:** The original `script.sql` still needs to be checked and cleaned before it is shared publicly. It contains computer-specific database paths and sample account data. Do not run that original script on another computer until a cleaned version is ready.
 
-Once a cleaned setup script is available:
+When the cleaned setup script is available:
 
 1. Open SSMS.
-2. In the **Connect to Server** window, enter your SQL Server instance name (for example, `localhost\SQLEXPRESS`) and connect.
-3. Open the cleaned PDMS setup script in SSMS using **File → Open → File**.
-4. Review the script, then click **Execute** or press **F5**.
-5. In Object Explorer, expand **Databases → PDMS → Tables** and confirm that the database and tables were created.
+2. In the Connect to Server window, enter your SQL Server instance name (for example, `localhost\SQLEXPRESS`) and connect.
+3. Open the cleaned PDMS setup script using **File -> Open -> File**.
+4. Click **Execute** or press **F5**.
+5. In Object Explorer, expand **Databases -> PDMS -> Tables** to check that the tables were created.
 
-If a cleaned setup script has not yet been included in the repository, do not assume the database will be created automatically. The database schema must be created before the application can connect successfully.
+The database needs to be set up before you run the application.
 
-## Step 6 — Configure the Database Connection
+## Step 6 - Configure the Database Connection
 
 The project uses Windows Authentication to connect to SQL Server.
 
-The updated `data_access_layer.py` reads the SQL Server instance name from the `PDMS_SERVER` environment variable. If it is not set, it uses `localhost\SQLEXPRESS` as the default.
+In `data_access_layer.py`, the application uses the `PDMS_SERVER` environment variable for the SQL Server instance name. If you do not set it, the default is `localhost\SQLEXPRESS`.
 
-### Option A — Use the default instance name
-
-If your SQL Server instance is named `localhost\SQLEXPRESS`, no additional configuration is needed.
-
-### Option B — Set your own SQL Server instance name
-
-If your instance has a different name, open PowerShell and run the following command, replacing the example with your actual server/instance name:
+If your SQL Server instance has a different name, open PowerShell and enter the following command, replacing the example with your own instance name:
 
 ```powershell
 $env:PDMS_SERVER = "YOUR_COMPUTER_NAME\SQLEXPRESS"
 ```
 
-For example, if your SQL Server instance is named `AmandaNitro\SQLEXPRESS`:
+For example:
 
 ```powershell
 $env:PDMS_SERVER = "AmandaNitro\SQLEXPRESS"
 ```
 
-Keep the same PowerShell window open when you start the application, because this environment variable applies to that session.
+Keep that PowerShell window open when running the application. This setting only applies to that PowerShell session.
 
-To find the correct instance name, check the **Server name** field in SSMS's **Connect to Server** window.
+You can check your instance name in the Server name field in SSMS.
 
-## Step 7 — Run the Application
+## Step 7 - Run the Application
 
-### Option A — Using PyCharm Community Edition (recommended)
+### Option A - Using PyCharm (recommended)
 
 1. Open PyCharm.
-2. Select **File → Open** and choose the PDMS project folder.
-3. In the project panel, locate `main.py`.
+2. Select **File -> Open** and choose the PDMS project folder.
+3. Find `main.py` in the project panel.
 4. Right-click `main.py` and select **Run 'main'**.
-5. The login window should appear if the database connection and setup are correct.
+5. The login window should appear if the database is set up correctly.
 
-If you set `PDMS_SERVER` in PowerShell, make sure PyCharm has that environment variable configured in the run configuration, or launch the application from the same PowerShell session instead.
+If you configured `PDMS_SERVER` in PowerShell, you may need to add the same variable to PyCharm's run configuration. Otherwise, you can run the application from that PowerShell window.
 
-### Option B — Using PowerShell or Command Prompt
+### Option B - Using PowerShell or Command Prompt
 
 1. Open PowerShell or Command Prompt.
-2. Change to the project directory. Replace the example path with the folder where you saved the project:
+2. Go to the folder where you saved the project. Replace the example path with your actual folder path:
 
    ```powershell
    cd "C:\path\to\PDMS_Project"
    ```
 
-3. If needed, set the SQL Server instance name in PowerShell:
+3. If needed, set your SQL Server instance name in PowerShell:
 
    ```powershell
    $env:PDMS_SERVER = "YOUR_COMPUTER_NAME\SQLEXPRESS"
@@ -131,18 +110,20 @@ If you set `PDMS_SERVER` in PowerShell, make sure PyCharm has that environment v
    python main.py
    ```
 
-5. The login window should appear if setup is complete.
+5. The login window should appear if the setup is complete.
 
 ## Troubleshooting
 
-- **`No module named ...`** — Install the missing package using `python -m pip install package-name`.
-- **ODBC driver not found** — Confirm that Microsoft ODBC Driver 17 for SQL Server is installed and the driver name matches the connection configuration.
-- **Cannot connect to SQL Server** — Confirm that SQL Server is installed and running, and that `PDMS_SERVER` matches the instance name shown in SSMS.
-- **Database `PDMS` does not exist** — Complete the database setup using the cleaned SQL setup script.
-- **Login fails for an old sample account** — The updated application verifies hashed passwords. Plaintext sample passwords from an older database are not compatible with the new password-verification logic. Register a new account or use a database setup prepared for the updated application.
+- **Missing Python module:** Run `python -m pip install package-name`, replacing `package-name` with the missing package.
+- **ODBC driver error:** Check that ODBC Driver 17 is installed.
+- **Database connection error:** Check that SQL Server is running and that `PDMS_SERVER` matches your instance name.
+- **PDMS database not found:** Make sure the database setup script has been run.
+- **Cannot log in with an old sample account:** The updated application checks hashed passwords, so old accounts that stored plaintext passwords may not work. Try registering a new account.
 
-## Notes
+## Note
 
-- The application requires a configured SQL Server database; installing Python packages alone is not sufficient.
-- Use fictional test data when demonstrating the project.
-- Do not publish real patient information, passwords, database backups, or other confidential data in a public repository.
+Use fictional test information when trying out the system. Do not upload real patient information, passwords, or database backups to a public repository.
+"""
+path = Path("/mnt/data/Installation_Setup_Guide.md")
+path.write_text(content, encoding="utf-8")
+print(f"Updated: {path}")
