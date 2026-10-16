@@ -1,6 +1,6 @@
 # Installation and Setup Guide
 
-This guide explains how to install and run the Patient Data Management System (PDMS) on Windows.
+This guide explains how to install and run the Patient-Doctor Management System (PDMS) on Windows.
 
 ## Step 1 - Install Python
 
