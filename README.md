@@ -2,7 +2,8 @@
 
 ## About the Project
 
-The Patient-Doctor Management System (PDMS) is a desktop application developed as an academic project by Amanda Ang, spanning November 2025 to June 2026. It is designed to help small clinics manage patient information and organize basic clinic operations in one system.
+The Patient-Doctor Management System (PDMS) is a desktop application developed as an academic project by Amanda Ang, spanning November 2025 to June 2026 (see [Thesis Paper]
+(pdms_thesis.pdf)). It is a prototype that is designed to help small clinics in the Philippines, especially in rural areas, manage patient information and organize basic clinic operations in one system.
 
 The application was developed using Python, Tkinter, and Microsoft SQL Server.
 
@@ -17,14 +18,16 @@ The application was developed using Python, Tkinter, and Microsoft SQL Server.
 - Billing and invoices
 - Database storage using Microsoft SQL Server
 
-## Technologies Used
+## Technology Stack
 
-- **Python** – application logic
-- **Tkinter** – graphical user interface
-- **Microsoft SQL Server** – database
-- **pyodbc** – connection between Python and SQL Server
-- **tkcalendar** – calendar interface
-- **Werkzeug** – password hashing
+- Programming Language: **Python**
+- GUI Framework: **Tkinter**
+- Database: **Microsoft SQL Server**
+- Database Connectivity: **PyODBC**
+- PDF Generation: **FPDF**
+- Image Processing: **Pillow (PIL)**
+- Authentication Security: **Werkzeug password hashing**
+- Calendar Widget: **tkcalendar**
 
 ## Installation and Setup
 
@@ -32,6 +35,8 @@ Please refer to the following files for the setup instructions and system requir
 
 - [Installation Guide](installation_guide.md)
 - [Minimum System Specifications](min_system_specs.md)
+
+
 
 ## Project Files
 
@@ -44,5 +49,3 @@ Please refer to the following files for the setup instructions and system requir
 This project was developed for academic purposes. The application requires a configured Microsoft SQL Server database to run.
 
 Use fictional test data when testing the system. This project is not intended to replace a professionally validated clinical information system.
-
-This is a prototype. 
