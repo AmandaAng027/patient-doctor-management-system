@@ -30,8 +30,8 @@ The application was developed using Python, Tkinter, and Microsoft SQL Server.
 
 Please refer to the following files for the setup instructions and system requirements:
 
-- [Installation and Setup Guide](installation_Setup_Guide.md)
-- [Minimum System Specifications](System_Specifications.md)
+- [Installation Guide](installation_guide.md)
+- [Minimum System Specifications](min_system_specs.md)
 
 ## Project Files
 
